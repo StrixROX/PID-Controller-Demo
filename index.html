@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PID</title>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding: 20px;
+
+      --grid-color: #aaa;
+      --point-size: 20px;
+    }
+
+    #sep_hori,
+    #sep_vert {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100vw;
+      height: 0;
+      border: 1px dashed var(--grid-color);
+      transform: translate(0, -50%);
+      pointer-events: none;
+    }
+
+    #sep_vert {
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 100vh;
+      transform: translate(-50%, 0);
+    }
+
+    #obj {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--point-size);
+      height: var(--point-size);
+      transform: translate(calc(-50% + 50vw), calc(-50% + 50vh));
+
+      background: black;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+
+    #kp,
+    #ki,
+    #kd,
+    #x,
+    #y {
+      text-align: right;
+      border: none;
+      border-bottom: 1px solid black;
+      max-width: 100px;
+    }
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <table>
+      <tr>
+        <td>Target X:</td>
+        <td><input type="number" name="x" id="x" step=1></td>
+      </tr>
+      <tr>
+        <td>Target Y:</td>
+        <td><input type="number" name="y" id="y" step=1></td>
+      </tr>
+      <tr>
+        <td>kp:</td>
+        <td><input type="number" name="kp" id="kp" step=0.1></td>
+      </tr>
+      <tr>
+        <td>ki:</td>
+        <td><input type="number" name="ki" id="ki" step=0.1></td>
+      </tr>
+      <tr>
+        <td>kd:</td>
+        <td><input type="number" name="kd" id="kd" step=0.1></td>
+      </tr>
+    </table>
+    Max FPS: <span id="fps"> - </span>
+    <div id="obj"></div>
+    <div id="sep_hori"></div>
+    <div id="sep_vert"></div>
+  </div>
+</body>
+</html>
