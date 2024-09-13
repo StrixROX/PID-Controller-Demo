@@ -8,7 +8,7 @@ const editY = document.getElementById('y')
 
 // state object
 class Object {
-  static redrawDelay = 5 // ms
+  static redrawDelay = 1 // ms
 
   constructor(targetPos, kp, ki, kd) {
     this.x = 0
@@ -38,7 +38,7 @@ class Object {
     let elastY = this.target[1]
 
     const interval = setInterval(() => {
-      if (Math.abs(this.target[0] - this.x) > 0.5 || Math.abs(this.target[1] - this.y) > 0.5) {
+      if (Math.abs(this.target[0] - this.x) > 0.2 || Math.abs(this.target[1] - this.y) > 0.2) {
 
         // x-dim
         const errX = this.target[0] - this.x
@@ -72,7 +72,7 @@ class Object {
     }, this.redrawDelay)
   }
 }
-const obj = new Object([0, 0], 0.2, 0.3, 0.3)
+const obj = new Object([0, 0], 0.07, 0.02, 0.2)
 obj.draw()
 
 // hold & drag handler
